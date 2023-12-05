@@ -21,10 +21,10 @@ const oneDisco = (req, res, next) => {
 }
 
 const saveDisco = (req, res, next) => {
-    const { name, email, image, description } = req.body
+    const { name, email, image, description, place } = req.body
 
     Disco
-        .create({ name, description, image, email })
+        .create({ name, description, image, email, place })
         .then(() => res.sendStatus(200))
         .catch(err => next(err));
 }

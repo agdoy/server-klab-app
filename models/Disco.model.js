@@ -23,6 +23,10 @@ const discoSchema = new Schema(
             type: String,
             required: [true, 'La descripción es obligatoria']
         },
+        place: {
+            type: String,
+            required: [true, 'La descripción es obligatoria']
+        },
     },
     {
         timestamps: true
