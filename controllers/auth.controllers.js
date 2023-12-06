@@ -34,7 +34,6 @@ const signup = (req, res, next) => {
 }
 
 const login = (req, res, next) => {
-    console.log("-------------------------------------------", req.body)
     const { email, password } = req.body
 
     if (email === '' || password === '') {

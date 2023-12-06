@@ -1,12 +1,12 @@
 
 const router = require("express").Router()
+const { verifyToken } = require("../middlewares/verifyToken");
 const {
     signup,
     login,
 
 } = require("../controllers/auth.controllers")
 
-const { verifyToken } = require("../middlewares/verifyToken");
 
 
 

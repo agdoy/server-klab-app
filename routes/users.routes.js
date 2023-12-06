@@ -1,15 +1,13 @@
 const router = require("express").Router()
 
-const User = require('./../models/Disco.model')
+const {
+    getUserProfile
+} = require("../controllers/user.controllers")
+const { verifyToken } = require("../middlewares/verifyToken")
 
 
-router.get("/getUserProfile", (req, res, next) => {
-    const { _id } = req.payload
-    User
-        .findById(_id)
-        .then(response => res.json(response))
-        .catch(err => next(err))
+router.get('/perfil', verifyToken, getUserProfile)
 
-})
 
 module.exports = router
+
