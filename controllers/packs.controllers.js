@@ -23,7 +23,19 @@ const updatePack = (req, res, next) => {
         .catch(err => next(err));
 };
 
+const deletePack = (req, res, next) => {
+
+    const { packId } = req.params
+    console.log('----------------------------', packId)
+    Packs
+        .findByIdAndDelete(packId)
+        .then(() => res.sendStatus(200))
+        .catch(err => next(err))
+}
+
+
 module.exports = {
     savePacks,
     updatePack,
+    deletePack
 };
