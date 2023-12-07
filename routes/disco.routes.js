@@ -5,16 +5,16 @@ const {
     saveDisco,
     filterDisco,
 
-} = require("../controllers/disco.controllers");
+} = require("../controllers/disco.controllers")
 
-const Disco = require('./../models/Disco.model')
+const { verifyToken } = require("../middlewares/verifyToken")
 
-router.get("/getAllDisco", findDiscos);
+router.get("/getAllDisco", findDiscos)
 
-router.get("/getOneDisco/:disco_id", oneDisco);
+router.get("/getOneDisco/:disco_id", oneDisco)
 
-router.post("/saveDisco", saveDisco);
+router.post("/saveDisco", verifyToken, saveDisco)
 
-router.get("/search/:filter", filterDisco);
+router.get("/search/:filter", filterDisco)
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const Disco = require("../models/Disco.model")
-
+const Packs = require('../models/Packs.model')
 
 // TODO: GESTIONAR TODOS LOS CATCH CON NEXT
 // TODO: REVISAR LAS POSIBILIDADES DE SELECT Y SORT
@@ -18,17 +18,23 @@ const findDiscos = (req, res) => {
 const oneDisco = (req, res, next) => {
     const { disco_id } = req.params
 
-    Disco
-        .findById(disco_id)
-        .then(response => res.json(response))
+    Promise.all([
+        Disco.findById(disco_id).populate('owner'),
+        Packs.find({ disco: disco_id })
+    ])
+        .then(response => {
+            const [disco, packs] = response
+            res.json({ disco, packs })
+        })
         .catch(err => next(err))
 }
 
 const saveDisco = (req, res, next) => {
     const { name, email, image, description, place } = req.body
+    const { _id: owner } = req.payload
 
     Disco
-        .create({ name, description, image, email, place })
+        .create({ name, description, image, owner, email, place })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
