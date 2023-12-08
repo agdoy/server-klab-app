@@ -30,11 +30,11 @@ const oneDisco = (req, res, next) => {
 }
 
 const saveDisco = (req, res, next) => {
-    const { name, email, image, description, place } = req.body
+    const { name, email, image, description, place, address } = req.body
     const { _id: owner } = req.payload
 
     Disco
-        .create({ name, description, image, owner, email, place })
+        .create({ name, description, image, owner, email, place, address })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }

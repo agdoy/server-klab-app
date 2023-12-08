@@ -25,8 +25,13 @@ const discoSchema = new Schema(
         },
         place: {
             type: String,
-            required: [true, 'La descripción es obligatoria']
+            required: [true, 'La ciudad es obligatoria']
         },
+        address: {
+            type: String,
+            required: [true, 'La direccion es obligatoria']
+        },
+
     },
     {
         timestamps: true
